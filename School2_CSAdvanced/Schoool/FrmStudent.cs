@@ -24,7 +24,7 @@ namespace Schoool
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            Student st = new Student();
+            StudentBLL st = new StudentBLL();
             var data = new StudentDto
             {
                 FirstName = txtName.Text,
