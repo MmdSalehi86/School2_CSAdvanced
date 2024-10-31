@@ -17,8 +17,6 @@ namespace School.BLL
                 };
             }
 
-            LessonDAL
-
             return new OperationResult
             {
                 Success = true,
