@@ -25,7 +25,7 @@ namespace Schoool
             {
                 Title = txtTitle.Text
             };
-            Lesson l = new Lesson();
+            LessonBLL l = new LessonBLL();
             var result = l.Insert(lesson);
             ShowToast(result.Message, result.Success);
 
