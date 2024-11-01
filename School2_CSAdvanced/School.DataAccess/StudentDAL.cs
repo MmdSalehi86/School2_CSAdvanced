@@ -4,7 +4,7 @@ using School.Model;
 
 namespace School.DataAccess
 {
-    public sealed class StudentDAL : DbSqlCommands
+    public class StudentDAL : DbSqlCommands
     {
         public DataTable Select()
         {
@@ -19,25 +19,25 @@ namespace School.DataAccess
             });
         }
 
-
         public int Insert(StudentDto studentDto)
         {
             return ExcuteProc("InsertStudent", new SqlParameter[]
             {
-                    new SqlParameter("@FirstName",studentDto.FirstName),
-                    new SqlParameter("@LastName",studentDto.LastName),
-                    new SqlParameter("@Mobile",studentDto.Mobile),
+                new SqlParameter("@FirstName",studentDto.FirstName),
+                new SqlParameter("@LastName",studentDto.LastName),
+                new SqlParameter("@Mobile",studentDto.Mobile),
             });
         }
 
-        public int Update()
+        public int Update(StudentDto studentDto)
         {
             return ExcuteProc("UpdateStudent");
         }
 
-        public int Delete()
+        public int Delete(int id)
         {
-            return ExcuteProc("DeleteStudent");
+            return ExcuteProc("DeleteStudent",
+                new SqlParameter("Id", id));
         }
     }
 }

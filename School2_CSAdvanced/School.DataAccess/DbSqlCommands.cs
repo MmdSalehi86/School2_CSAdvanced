@@ -6,7 +6,7 @@ namespace School.DataAccess
 {
     public class DbSqlCommands
     {
-        protected int ExcuteProc(string proc, SqlParameter[] ps = null)
+        protected int ExcuteProc(string proc, params SqlParameter[] ps)
         {
             int result = 0;
             using (SqlConnection con = new SqlConnection(Connections.SchoolCS))
@@ -39,7 +39,7 @@ namespace School.DataAccess
             return result;
         }
 
-        protected DataTable SelectDataTable(string procName, SqlParameter[] ps = null)
+        protected DataTable SelectDataTable(string procName, params SqlParameter[] ps)
         {
             DataTable dataTable = null;
             using (SqlConnection con = new SqlConnection(Connections.SchoolCS))
@@ -74,7 +74,7 @@ namespace School.DataAccess
         /// <param name="funcName">must have schema</param>
         /// <param name="ps"></param>
         /// <returns></returns>
-        protected T SelectFunc<T>(string funcName, SqlParameter[] ps = null)
+        protected T SelectFunc<T>(string funcName, params SqlParameter[] ps)
         {
             SqlConnection con = new SqlConnection(Connections.SchoolCS);
             SqlCommand cmd = new SqlCommand();

@@ -1,21 +1,13 @@
-﻿using School.BLL;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using School.BLL;
+using School.Model;
 
 namespace Schoool
 {
     public partial class FrmStudent : Form
     {
-        //public delegate void StudentInsertedHandler(StudentDto studentDto);
-        public event EventHandler StudentInserted;
-        public event Action<StudentDto,int> StudentUpdated;
         public Action OnStudentInserted;
         public FrmStudent()
         {
@@ -34,12 +26,7 @@ namespace Schoool
             var result = st.Insert(data);
             if (result.Success)
             {
-                //if (StudentInserted != null)
-                //{
-                //    StudentInserted(data, null);
-                //}
-                //StudentInserted?.Invoke(data, null);
-                OnStudentInserted();
+                OnStudentInserted?.Invoke();
             }
             ShowToast(result.Message, result.Success);
         }

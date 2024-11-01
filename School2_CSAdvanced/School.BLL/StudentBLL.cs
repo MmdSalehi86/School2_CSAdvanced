@@ -1,16 +1,17 @@
 ﻿using School.DataAccess;
 using School.Model;
 using System;
-using System.Security.Cryptography;
+using System.Data;
 
 namespace School.BLL
 {
-    public class StudentBLL
+    public sealed class StudentBLL
     {
-        StudentDAL student;
+        StudentDAL dataAccess;
+
         public StudentBLL()
         {
-            student = new StudentDAL();
+            dataAccess = new StudentDAL();
         }
 
         public OperationResult Insert(StudentDto studentDto)
@@ -25,7 +26,7 @@ namespace School.BLL
             bool existsMobile;
             try
             {
-                existsMobile = student.CheckMobileExists(studentDto.Mobile);
+                existsMobile = dataAccess.CheckMobileExists(studentDto.Mobile);
             }
             catch (Exception ex)
             {
@@ -41,9 +42,10 @@ namespace School.BLL
             }
             try
             { 
-                if (student.Insert(studentDto) >= 1)
+                if (dataAccess.Insert(studentDto) >= 1)
                 {
                     result.Success = true;
+                    result.Message = "عملیات ثبت موفقیت آمیز بود";
                     return result;
                 }
                 else
@@ -56,6 +58,22 @@ namespace School.BLL
             {
                 ex.AddLog();
                 result.Message = "برنامه با خطا مواجه شد";
+                return result;
+            }
+        }
+
+        public OperationResult<DataTable> Select()
+        {
+            OperationResult<DataTable> result = new OperationResult<DataTable>();
+            try
+            {
+                result.Data = dataAccess.Select();
+                result.Success = true;
+                return result;
+            }
+            catch
+            {
+                result.Message = "خطا در خواندن اطلاعات";
                 return result;
             }
         }

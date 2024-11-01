@@ -1,12 +1,5 @@
-﻿using School.BLL;
+﻿using School.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Schoool
@@ -17,7 +10,6 @@ namespace Schoool
         {
             InitializeComponent();
         }
-
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -31,13 +23,8 @@ namespace Schoool
             var studentDto = sender as StudentDto;
             if (studentDto != null)
             {
-                button1.Text = studentDto.FirstName + " ثبت شد ";
+                button1.Text = studentDto.FirstName + "ثبت شد";
             }
         }
-
-        //private void Frm_StudentInserted(School.BLL.StudentDto studentDto)
-        //{
-        //    button1.Text = studentDto.FirstName + " ثبت شد ";
-        //}
     }
 }
